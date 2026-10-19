@@ -36,7 +36,21 @@ function calculateCartSubtotal(cart) {
   return summ
 }
 
-function calculateOrderTotal() { return notImplemented(); }
+function calculateOrderTotal(cart, promo) {
+  let delivery = 30000
+  const subtotal = calculateCartSubtotal(cart);
+  let discount = 0;
+  if (subtotal>50000) delivery = 0;
+  if (promo==="SAVE10" && subtotal>20000) discount = 0.1*subtotal
+  
+  const total = delivery+subtotal - discount
+  return {
+    subtotal: subtotal,
+    discount: discount,
+    delivery:delivery,
+    total:total
+  }
+}
 
 const cartApi = { addToCart, changeQuantity, removeFromCart, calculateCartSubtotal, calculateOrderTotal };
 
