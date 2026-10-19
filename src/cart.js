@@ -1,8 +1,3 @@
-
-function notImplemented() {
-  throw new Error('Корзина ещё не реализована. Сначала прочитайте тесты.');
-}
-
 function addToCart(cart,product,quantity) {
   if (quantity===0) throw new RangeError
   const exist = cart.filter(item=>item.id===product.id)[0];
