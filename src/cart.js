@@ -1,8 +1,21 @@
+
 function notImplemented() {
   throw new Error('Корзина ещё не реализована. Сначала прочитайте тесты.');
 }
 
-function addToCart() { return notImplemented(); }
+function addToCart(cart,product,quantity) {
+  if (quantity===0) throw new RangeError
+  const exist = cart.filter(item=>item.id===product.id)[0];
+  if(exist){
+    exist.quantity+=quantity;
+  }
+  else{
+    if (quantity > product.stock) throw new RangeError;
+    cart.push({...product, quantity});
+  }
+  return cart;
+}
+
 function changeQuantity() { return notImplemented(); }
 function removeFromCart() { return notImplemented(); }
 function calculateCartSubtotal() { return notImplemented(); }
