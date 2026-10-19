@@ -16,7 +16,16 @@ function addToCart(cart,product,quantity) {
   return cart;
 }
 
-function changeQuantity() { return notImplemented(); }
+function changeQuantity(cart, id, quantity) {
+  if(quantity===0) throw new RangeError;
+  product = cart.filter(item=>item.id===id)[0];
+  if(product){
+    if(product.stock<quantity) throw new RangeError;
+  else product.quantity = quantity;
+  }
+  return cart;
+}
+
 function removeFromCart() { return notImplemented(); }
 function calculateCartSubtotal() { return notImplemented(); }
 function calculateOrderTotal() { return notImplemented(); }
